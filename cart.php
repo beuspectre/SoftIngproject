@@ -1,5 +1,4 @@
-<?php require_once("config.php"); ?>
-
+<?php require_once("../resources/config.php"); ?>
 
 <?php
 
@@ -15,7 +14,7 @@ while($row = fetch_array($query)){
 
 if($row['product_quantity'] != $_SESSION['product_' . $_GET['add']])  {
 
-
+$_SESSION['product_' . $_GET['add']]+=1;
 
 redirect("checkout.php");
 }
@@ -32,11 +31,11 @@ redirect("checkout.php");
 }
 
 
-//$_SESSION['product_' . $_GET['add']] +=1;
+$_SESSION['product_' . $_GET['add']] +=1;
 
 
 
-//redirect("index.php");
+redirect("checkout.php");
 
 
 }
@@ -175,6 +174,60 @@ DELIMETER;
 return $paypal_button;
    }
 
+
+}
+
+
+
+
+
+function process_transaction(){
+
+$total = 0;
+$item_quantity = 0;
+
+
+foreach ($_SESSION as $name => $value){
+
+if($value >0 ) {
+   
+if(substr($name, 0, 8 ) == "product_") {
+
+$length = strlen($name) - 8 ;
+
+$id = substr($name, 8 , $length);
+
+$query = query("SELECT * FROM products WHERE product_id = "  . escape_string($id) . " ");
+confirm($query);
+
+while($row = fetch_array($query)){
+$product_price = $row['product_price'];
+$sub = $row['product_price']*$value;
+$item_quantity +=$value;
+
+
+
+$query = query("INSERT INTO reports (product_id, product_price, product_quantity) VALUES('{$id}','{$product_price}','{$value}')");
+
+confirm($query);
+
+
+
+
+}
+
+ $total += $sub;
+ $item_quantity;
+}
+
+
+
+
+}
+
+
+}
+  
 
 }
 
