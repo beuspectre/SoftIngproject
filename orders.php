@@ -1,16 +1,7 @@
-<?php require_once("../../resources/config.php"); ?>
-<?php include(TEMPLATE_BACK . "/header.php"); ?>
 
 
-        <div id="page-wrapper">
 
-            <div class="container-fluid">
-
-
-                
-
-
-        <div class="col-md-12">
+ <div class="col-md-12">
 <div class="row">
 <h1 class="page-header">
    All Orders
@@ -22,7 +13,7 @@
 <table class="table table-hover">
     <thead>
 
-     <tr>
+      <tr>
            <th>id</th>
            <th>Amount</th>
            <th>Transaction</th>
@@ -31,10 +22,12 @@
            <
       </tr>
     </thead>
-   <tbody>
+    <tbody>
         <?php      
 
-        display_orders(); ?>
+        display_orders(); 
+
+        ?>
         
 
     </tbody>
@@ -43,18 +36,4 @@
 
 
 
-
-
-
-
-
-
-
-
-            </div>
-            <!-- /.container-fluid -->
-
-        </div>
-        <!-- /#page-wrapper -->
-
-   <?php include(TEMPLATE_BACK . "/footer.php"); ?>
+   
