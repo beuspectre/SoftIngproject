@@ -1,83 +1,109 @@
-<?php require_once("../resources/config.php"); ?>
+<?php require_once("../../resources/config.php"); ?>
+<?php include(TEMPLATE_BACK . "/header.php"); ?>
 
-<?php include(TEMPLATE_FRONT . DS . "/header.php"); ?>
+<?php
 
+if(!isset($_SESSION['username'])){
 
-
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <div class="row">
-
-             
-
-           <?php include(TEMPLATE_FRONT .  DS ."side_nav.php") ?>
+redirect("../../public");
 
 
-
-            <div class="col-md-9">
-
-                <div class="row carousel-holder">
-
-                    <div class="col-md-12">
-                                 
-
-                                  <?php include(TEMPLATE_FRONT .  DS ."slider.php") ?>
+}
 
 
+?>
+
+<div id="page-wrapper">
+
+<div class="container-fluid">
+
+
+
+                <!-- Page Heading -->
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+
+                        <h1 class="page-header">
+
+                            Dashboard <small>Statistics Overview</small>
+
+                        </h1>
+
+                        <ol class="breadcrumb">
+
+                            <li class="active">
+
+                                <i class="fa fa-dashboard"></i> Dashboard
+
+                            </li>
+
+                        </ol>
 
                     </div>
 
                 </div>
 
-                <div class="row">
+                <!-- /.row -->
 
-   <?php
-    get_products();  ?>
+<?php 
 
-
-
+if ($_SERVER['REQUEST_URI'] == "/ecom/public/admin/" || $_SERVER['REQUEST_URI'] == "/ecom/public/admin/index.php"){
     
-                </div>  <!-- RoW ends here-->
+
+include(TEMPLATE_BACK . "/admin_content.php");
+}
+
+
+if(isset($_GET['orders'])){
+
+
+include(TEMPLATE_BACK . "/orders.php");
+
+
+}
+
+
+if(isset($_GET['categories'])){
+
+
+include(TEMPLATE_BACK . "/categories.php");
+
+}
+
+if(isset($_GET['products'])){
+
+
+include(TEMPLATE_BACK . "/products.php");
+}
+
+if(isset($_GET['add_product'])){
+
+
+include(TEMPLATE_BACK . "/add_product.php");
+
+}
+
+?>
+
+
+                 
+
+
+
+                
 
             </div>
 
+            <!-- /.container-fluid -->
+
+
+
         </div>
 
-    </div>
-    <!-- /.container -->
-<?php include(TEMPLATE_FRONT  . DS .  "footer.php") ?>
-   
-<style>
-    .row{
-        margin-top:15px;
-    }
-    .col-md-9{
-        margin-top:-50px;
-    }
-       /* .list-group-item{
-        height: 100px;
+        <!-- /#page-wrapper -->
 
-    }*/
-    a.list-group-item{
-        color: red;
-        font-family: cursive;
-        background: transparent; 
-        padding-bottom: 30px;
-       
-    }
-    .list-group-item{
-        border: none;
-        border-left: 3px solid transparent;
-    }
-    a.list-group-item:hover{
-      border-color: red; 
 
-    }
-    .col-md-3{
-        margin-top: -20px;
-height: 200vh;
-background: linear-gradient(#000, #f3f3f3);
-    }
-</style>
+
+<?php include(TEMPLATE_BACK . "/footer.php"); ?>
