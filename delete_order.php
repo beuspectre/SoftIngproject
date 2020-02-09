@@ -1,4 +1,4 @@
-<?php require_once("../../config.php"); 
+<?php require_once("/templates/config.php"); 
 
 if(isset($_GET['id'])){
 	
